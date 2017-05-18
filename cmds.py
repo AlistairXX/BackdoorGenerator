@@ -14,4 +14,4 @@ class getidletime:
         self.description = 'printing user idle time in seconds\n'
         self.args = False
     def main(self):
-        return str((win32api.GetTickCount() - win32api.GetLastInputInfo()) / 1000.0)
+        return str((win32api.GetTickCount() - win32api.GetLastInputInfo()) / 1000.0)+'\n'
