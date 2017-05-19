@@ -1,4 +1,4 @@
-import subprocess,win32api
+import subprocess,win32api,sock
 class cmd:
     def __init__(self):
         self.command = 'cmd'
