@@ -15,7 +15,7 @@ I will give two simple example on how to make a small module:
 
 import ctypes #imports for this module you can write them at the top too
 class messagebox:
-	def __init__(self):#the constructor musn´t contain arguments
+	def __init__(self):#the constructor musnÂ´t contain arguments
 		self.command = 'messagebox' #this is the command you have to enter in order to execute this module
 		self.description = 'generating a custom messagebox with: messagebox <message> <window title> #the description for the help message
 		self.args = True #for showing that this function gets what stands after its command like: messagebox x y the function will get the string 'x y'
@@ -27,10 +27,12 @@ and now the example without an argument
 
 import getpass
 class getuser:
-	def __init__(self):#the constructor musn´t contain arguments
+	def __init__(self):#the constructor musnÂ´t contain arguments
 		self.command = 'getusername' #this is the command you have to enter in order to execute this module
 		self.description = 'giving you the username of the currently logged in user' #the description for the help message
 		self.args = False #for showing that this function gets no arguments
 	def main(self):
 		return getpass.getuser()+'\n'
 two more important notes the script is only able to send strings so please return a string and ad a '\n' to it in order to make netcat jump to the next line
+in the latest version the module writers can use: sock.sock.send(<string>) in their module in order to send more then one string to the 
+user of the backdoor
