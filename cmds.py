@@ -18,14 +18,15 @@ class getidletime:
 class getuser:
     def __init__(self):
         self.command = 'getusername'
-        self.description = 'printing the username of the currently logged in user'
+        self.description = 'printing the username of the currently logged in user\n'
         self.args = False
     def main(self):
         return getpass.getuser()+'\n'
 class messagebox:
     def __init__(self):
         self.command = 'messagebox'
-        self.description = 'generating a custom messagebox with: messagebox <message> <window title>'
+        self.description = 'generating a custom messagebox with: messagebox <message> <window title>\n'
+        self.args = True
     def main(self,arg):
         Box = ctypes.windll.user32.MessageBoxA
         sock.sock.s.send("Box was opened\n")
