@@ -1,4 +1,4 @@
-import subprocess,win32api,ctypes,getpass,sock
+simport subprocess,win32api,ctypes,getpass,sock
 class cmd:
     def __init__(self):
         self.command = 'cmd'
