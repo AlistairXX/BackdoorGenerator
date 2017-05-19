@@ -17,7 +17,7 @@ import ctypes #imports for this module you can write them at the top too
 class messagebox:
 	def __init__(self):#the constructor musn´t contain arguments
 		self.command = 'messagebox' #this is the command you have to enter in order to execute this module
-		self.description = 'generating a custom messagebox with: messagebox <message> <window title> #the description for the help message
+		self.description = 'generating a custom messagebox with: messagebox <message> <window title>' #the description for the help message
 		self.args = True #for showing that this function gets what stands after its command like: messagebox x y the function will get the string 'x y'
 	def main(self,arg): #the method which will be executed when you call the module
 		Box = ctypes.windll.user32.MessageBoxA
