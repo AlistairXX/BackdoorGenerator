@@ -60,4 +60,4 @@ class error:
         self.description = 'sending an error message\n'
         self.args = False
     def main(self):
-        return "ERROR\n"
+        sock.sock.s.send("ERROR\n")
