@@ -57,7 +57,7 @@ class screenshot:#not tested yet
 class error:
     def __init__(self):
         self.command = 'error'
-        self.description = 'sending an error message'
+        self.description = 'sending an error message\n'
         self.args = False
     def main(self):
         return "ERROR\n"
